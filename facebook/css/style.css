@@ -1,0 +1,124 @@
+@import "reset.css";
+
+body{
+	background:green;
+}
+
+#wrapper{
+	overflow: auto;
+--	width: 1024px;
+	margin: 20px auto;
+	border: 1px solid white;
+}
+
+#posts_contain{
+	overflow: auto;
+	width: 800px;
+	margin: 20px auto;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.post_item{
+	float: left;
+	width: 350px;
+	border: 1px solid white;
+	padding: 5px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.clear{
+	clear:both;
+}
+
+.post_person{
+	overflow: auto;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.avatar{
+	width: 50px;
+	height: 50px;
+	float: left;
+	background: white;
+}
+
+.avatar img{
+	width: 50px;
+	height: 50px;
+}
+
+.person_content{
+	width: 240px;
+	float: left;
+	padding: 5px;
+}
+
+#post_content{
+	overflow: auto;
+	margin: auto;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.p_message{
+	margin: auto;
+	margin-top: 5px;
+}
+
+.p_source{
+	margin: auto;
+	width: 300px;
+	margin-top: 5px;
+}
+
+.p_source img{
+	margin: auto;
+	width: 300px;
+}
+
+#post_action{
+	overflow: auto;
+	margin: auto;
+	border: 1px solid white;
+}
+
+.p_action{
+	float: left;
+	padding: 5px;
+}
+
+#post_comment{
+	overflow: auto;
+	margin: auto;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.name{
+	float: left;
+	margin-right: 5px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.c_message{
+	--float: right;
+}
+
+.m_action{
+	margin: auto;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+#cm_count{
+	float: left;
+	width: 50px;
+}
+
+#cm_count input{
+	width: 50px;
+}

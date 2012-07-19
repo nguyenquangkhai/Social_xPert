@@ -56,7 +56,7 @@
     <temporaryDirectory enabled="false"/>
     <testsDirectory>
       <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
-      <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
+      <!-- testPHPUnitBootstrapFile filesystemName="bootstrap.php" -->
       <testApplicationDirectory>
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index"/>

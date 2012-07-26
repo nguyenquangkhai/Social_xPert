@@ -1,0 +1,22 @@
+<?php
+
+class CountryMasterController extends Zend_Controller_Action
+{
+
+    public function init()
+    {
+        /* Initialize action controller here */
+    }
+
+    public function indexAction()
+    {
+        $countryMapper = new Application_Model_CountryMasterMapper();
+        $country = new Application_Model_CountryMaster();
+        $countryMapper->findById(1, $country);
+        print_r($country->getCountryName());
+        $this->view->country = $country;
+    }
+
+
+}
+

@@ -12,10 +12,34 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="CountryMaster">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory enabled="false"/>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Event"/>
+          <dbTableFile dbTableName="CityMaster"/>
+          <dbTableFile dbTableName="CountryMaster"/>
+          <dbTableFile dbTableName="LanguageMaster"/>
+          <dbTableFile dbTableName="Milestone"/>
+          <dbTableFile dbTableName="Post"/>
+          <dbTableFile dbTableName="PagePost"/>
+          <dbTableFile dbTableName="TagPost"/>
+        </dbTableDirectory>
+        <modelFile modelName="EventMapper"/>
+        <modelFile modelName="PostMapper"/>
+        <modelFile modelName="TagPostMapper"/>
+        <modelFile modelName="PagePostMapper"/>
+        <modelFile modelName="CityMasterMapper"/>
+        <modelFile modelName="CountryMasterMapper"/>
+        <modelFile modelName="LanguageMasterMapper"/>
+        <modelFile modelName="MilestoneMapper"/>
+        <modelFile modelName="Mapper/CountryMaster"/>
+        <modelFile modelName="CountryMaster"/>
+      </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>
         <viewScriptsDirectory>
@@ -24,6 +48,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="CountryMaster">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -56,7 +83,6 @@
     <temporaryDirectory enabled="false"/>
     <testsDirectory>
       <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
-      <!-- testPHPUnitBootstrapFile filesystemName="bootstrap.php" -->
       <testApplicationDirectory>
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index"/>

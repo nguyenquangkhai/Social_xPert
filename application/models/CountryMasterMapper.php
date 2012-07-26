@@ -22,14 +22,16 @@ class Application_Model_CountryMasterMapper {
         return $this->_dbTable;
     }
 
-    public function findById($country_master_id, Application_Model_CountryMaster $country_master) {
+    public function findById($country_master_id) {
         $result = $this->getDbTable()->find($country_master_id);
         if (0 == count($result)) {
             return;
         }
         $row = $result->current();
+        $country_master = new Application_Model_CountryMaster();
         $country_master->setId($row->country_master_id)
                        ->setCountryName($row->country_name);
+        return $country_master;
     }
 
     public function findByNamePart($country_name_part) {

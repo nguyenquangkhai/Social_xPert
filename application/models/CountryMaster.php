@@ -22,7 +22,7 @@ class Application_Model_CountryMaster {
     public function __get($name) {
         $method = 'get' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Invalid guestbook property');
+            throw new Exception('Invalid property');
         }
         return $this->$method();
     }

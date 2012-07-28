@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_CountryMasterMapper {
+class Application_Model_DbMapper_CountryMasterMapper {
 
     protected $_dbTable;
 
@@ -28,10 +28,7 @@ class Application_Model_CountryMasterMapper {
             return;
         }
         $row = $result->current();
-        $country_master = new Application_Model_CountryMaster();
-        $country_master->setId($row->country_master_id)
-                       ->setCountryName($row->country_name);
-        return $country_master;
+        return $row;
     }
 
     public function findByNamePart($country_name_part) {
@@ -43,14 +40,7 @@ class Application_Model_CountryMasterMapper {
         if (0 == count($resultSet)) {
             return;
         }
-        $entries   = array();
-        foreach ($resultSet as $row) {
-            $country_master = new Application_Model_CountryMaster();
-            $country_master->setId($row->country_master_id)
-                           ->setCountryName($row->country_name);
-            $entries[] = $country_master;
-        }
-        return $entries;
+        return $resultSet;
     }
 
 }

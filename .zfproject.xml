@@ -39,6 +39,13 @@
         <modelFile modelName="MilestoneMapper"/>
         <modelFile modelName="Mapper/CountryMaster"/>
         <modelFile modelName="CountryMaster"/>
+        <modelFile modelName="CityMaster"/>
+        <modelFile modelName="Event"/>
+        <modelFile modelName="LanguageMaster"/>
+        <modelFile modelName="Milestone"/>
+        <modelFile modelName="PagePost"/>
+        <modelFile modelName="Post"/>
+        <modelFile modelName="TagPost"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

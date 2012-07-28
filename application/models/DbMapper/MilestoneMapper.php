@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_MilestoneMapper {
+class Application_Model_DbMapper_MilestoneMapper {
 
     protected $_dbTable;
 

@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_TagPostMapper {
+class Application_Model_DbMapper_TagPostMapper {
 
     protected $_dbTable;
 

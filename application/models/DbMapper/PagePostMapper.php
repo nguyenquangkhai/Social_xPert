@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_PagePostMapper
+class Application_Model_DbMapper_PagePostMapper
 {
 
  protected $_dbTable;

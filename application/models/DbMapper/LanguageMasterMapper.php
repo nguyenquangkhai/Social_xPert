@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_LanguageMasterMapper {
+class Application_Model_DbMapper_LanguageMasterMapper {
 
     protected $_dbTable;
 

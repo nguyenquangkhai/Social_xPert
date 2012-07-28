@@ -15,5 +15,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('facebook', $multidb->getDb('facebook'));
         Zend_Registry::set('log', $multidb->getDb('log'));
     }
+    
+    
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_CityMasterMapper {
+class Application_Model_DbMapper_CityMasterMapper {
 
     protected $_dbTable;
 

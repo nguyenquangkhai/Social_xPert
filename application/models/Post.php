@@ -3,6 +3,7 @@
 class Application_Model_Post
 {
     protected $_post_id;
+    protected $_page_id;
     protected $_message;
     protected $_highlight;
     protected $_pin_to_top;
@@ -15,7 +16,7 @@ class Application_Model_Post
     protected $_schedule;
     protected $_privacy;
     protected $_type;
-    protected $_posted;
+    protected $_is_posted;
     protected $_addtime;
     protected $_updtime;
     

@@ -175,5 +175,35 @@ class Application_Model_DbMapper_PostMapper {
             return null;
         }
     }
+    
+    //INSERT RECORD SECTION
+    public function insertNewPost(Application_Model_Post $post){
+        if(get_class($post) == "Application_Model_Post"){
+            $table = $this->getDbTable();
+            $row = $table->createRow();
+            $row->page_id      = $post->page_id;
+            $row->message      = $post->message;
+            $row->highlight    = $post->highlight;
+            $row->pin_to_top   = $post->pin_to_top;
+            $row->tag          = $post->tag;
+            $row->milestone_id = $post->milestone_id;
+            $row->event_id     = $post->event_id;
+            $row->image_id     = $post->image_id;
+            $row->video_id     = $post->video_id;
+            $row->poll_id      = $post->poll_id;
+            $row->schedule     = $post->schedule;
+            $row->privacy      = $post->privacy;
+            $row->type         = $post->type;
+            $row->is_posted    = $post->is_posted;
+            
+            $row->save();
+            // now fetch the id of the row you just created and return it 
+            $post->post_id = $this->_db->lastInsertId(); 
+            
+            return $post;
+        }else{
+            throw new Exception('Unvalid object');
+        }
+    }
 }
 

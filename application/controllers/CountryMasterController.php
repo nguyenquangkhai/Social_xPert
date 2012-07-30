@@ -10,9 +10,9 @@ class CountryMasterController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $countryMapper = new Application_Model_DbMapper_CountryMasterMapper();
+        $countryManager = new Application_Model_DbManager_CountryMasterManager();
         
-        $country = $countryMapper->findById(1);
+        $country = $countryManager->findById(1);
         print_r($country->country_name);//getCountryName());
         $this->view->country = $country;
     }

@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_DbMapper_CountryMasterMapper {
+class Application_Model_DbManager_CountryMasterManager {
 
     protected $_dbTable;
 

@@ -1,0 +1,17 @@
+<br /><br />
+<div id="view-content">
+     <?php foreach ($this->post as $post): ?>
+	<p><?php echo $post->postId ?></p>
+        <p><?php echo $post->message ?></p>
+        <p><?php echo $post->highLight ?></p>
+        <p><?php echo $post->pinToTop ?></p>
+        <p><?php echo $post->isTagged ?></p>
+        <p><?php echo $post->milestoneId ?></p>
+        <p><?php echo $post->imageId ?></p>
+        <p><?php echo $post->videoId ?></p>
+        <?php foreach ($post->tag as $entry): ?>
+        <dt><?php echo $this->escape($entry->tagPostId) ?></dt>
+        <dd><?php echo $this->escape($entry->userName) ?></dd>
+        <?php endforeach ?>
+    <?php endforeach ?>
+</div>

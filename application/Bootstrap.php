@@ -16,6 +16,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('log', $multidb->getDb('log'));
     }
     
-    
+    protected function _initSession()
+    {
+        Zend_Locale::setDefault('en_US');
+        Zend_Session::start();
+    }
 }
 

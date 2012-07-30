@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_DbMapper_EventMapper {
+class Application_Model_DbManager_EventManager {
 
     protected $_dbTable;
 

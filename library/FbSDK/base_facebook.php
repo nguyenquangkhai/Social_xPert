@@ -126,9 +126,9 @@ abstract class BaseFacebook
    * Default options for curl.
    */
   public static $CURL_OPTS = array(
-    CURLOPT_CONNECTTIMEOUT => 120,
+    CURLOPT_CONNECTTIMEOUT => 1200,
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 180,
+    CURLOPT_TIMEOUT        => 1800,
     CURLOPT_USERAGENT      => 'facebook-php-3.1',
   );
 

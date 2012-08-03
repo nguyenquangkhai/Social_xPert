@@ -14,18 +14,11 @@ class FacebookController extends Zend_Controller_Action
         /**Note
           *...
           */
-        $user = Fb_Facebook::getUser();
-        if ($user) {
-            try {
-                $user_info = Fb_Facebook::api("/me");
-                $this->view->data = $user_info;
-            } catch (FacebookApiException $e) {
-           	    $user = null;
-                $this->view->assign("data","khong lay duoc data");
-            }
-        }
-        else 
-            $this->view->data = "khong co user";
+        $obj = new Application_Model_Facebook_Post();
+        $post_id = "449021921787077_450553698300566";
+        $post = $obj->getPost($post_id);
+
+        $this->view->data = $post;
         
     }
 
@@ -268,5 +261,7 @@ class FacebookController extends Zend_Controller_Action
             exit();
         }                
     }
+    
+    
 }
 

@@ -1,11 +1,11 @@
 <html>
 
 <head>
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 </head>
 
 <body>
-
+<?php print_r($this->data); 
+echo $this->data;?>
 <br/>
 <a href="http://localhost/Social_Xpert/index.php/facebook/login">Login</a>
 <div style="clear:both;"></div>
@@ -48,26 +48,6 @@
 	</form>
 </div>
 
-<script type="text/javascript">
-	function post_wall(){
-//		var p=document.getElementById('post_new').value;
-//		alert(p);
-		var p=$('#post_new').val();
-		alert(p);
-		var p_id=$('#post_user_id').val();;
-		$.ajax({
-		  type: 'POST',
-		  url: 'http://localhost/Social_Xpert/index.php/facebook/post',
-		  data: ({
-			page_id : p_id, 
-			message : p,
-		  }),
-		  success: function(data) {
-			alert(data);
-		  }
-		});
-	}
-</script>
 </body>
 
 </html>

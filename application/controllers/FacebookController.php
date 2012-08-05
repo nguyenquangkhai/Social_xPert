@@ -14,9 +14,9 @@ class FacebookController extends Zend_Controller_Action
         /**Note
           *...
           */
-        $obj = new Application_Model_Facebook_Post();
-        $post_id = "449021921787077_450553698300566";
-        $post = $obj->getPost($post_id);
+        $obj = new Application_Model_Facebook_Page();
+     //   $post_id = "449021921787077_450553698300566";
+        $post = $obj->getPageInfo("herokes");
 
         $this->view->data = $post;
         

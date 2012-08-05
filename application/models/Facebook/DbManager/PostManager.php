@@ -113,12 +113,13 @@ class Application_Model_Facebook_DbManager_PostManager {
         if (get_class($post) == "Application_Model_Facebook_Post") {
             $table = $this->getDbTable();
             $row = $table->createRow();
-            $row->page_id       = $post->page_id;
+            $row->post_id       = $post->post_id;
             $row->message       = $post->message;
             $row->picture       = $post->picture;
             $row->type          = $post->type;
-            $row->createdTime   = $post->createdTime;
-            $row->updatedTime   = $post->updatedTime;
+            $row->created_time  = $post->createdTime;
+            $row->updated_time  = $post->updatedTime;
+            $row->page_id       = $post->page_id;
 
             $row->save();
             // now fetch the id of the row you just created and return it 

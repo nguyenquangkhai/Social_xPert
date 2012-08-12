@@ -16,9 +16,9 @@ class FacebookController extends Zend_Controller_Action
           */
         $obj = new Application_Model_Facebook_Page();
      //   $post_id = "449021921787077_450553698300566";
-        $post = $obj->getPageInfo("herokes");
-
-        $this->view->data = $post;
+     //   $posts = $obj->getCheckins("421753514532658");
+        $posts = $obj->getAccessToken("421753514532658");
+        $this->view->data = $posts;
         
     }
 
@@ -87,11 +87,23 @@ class FacebookController extends Zend_Controller_Action
 //                'published' => true,//boolean //Whether a post is published. Default is published. This field is `not` supported when actions parameter is specified. 
 //                'scheduled_publish_time' => '',//UNIX timestamp //Time when the page post should go live, this should be between 10 mins and 6 months from the time of publishing the post.
             );
-	
-            $feed_post = $this->_postPage($page, $type, $data);
-            if($feed_post){
-                echo $feed_post['id'];
-                exit();
+            $page_info = Fb_Facebook::api($page_id."?fields=access_token");
+            if( !empty($page_info['access_token']) ) {
+                $data['access_token'] = $page_info['access_token'];
+                $post = new Application_Model_Facebook_Post();
+                $feed_post = $post->createPost($page_id, $type, $data);
+
+                if($feed_post){
+                    echo $feed_post['id'];
+                    exit();
+                }
+                else{
+                    echo 'fail';
+                    exit();
+                }
+            }
+            else{
+                echo "empty access token";
             }
         } catch (FacebookApiException $e) {
             echo $e;
@@ -104,7 +116,7 @@ class FacebookController extends Zend_Controller_Action
           *30/7 Raw function
           */        
         try {
-            $page = $this->_request->getParam('page_id');
+            $page_id = $this->_request->getParam('page_id');
             $type = "photos";            
 
             $valid_photos = array('jpeg', 'jpg', 'png', 'gif');
@@ -124,15 +136,27 @@ class FacebookController extends Zend_Controller_Action
 //                    'no_story' => 1
                 );
                 
-                $photo_post = $this->_postPage($page, $type, $data);
-                if($photo_post){
-                    echo $photo_post['post_id'];
-                    exit();
+                $page_info = Fb_Facebook::api($page_id."?fields=access_token");
+                if( !empty($page_info['access_token']) ) {
+                    $data['access_token'] = $page_info['access_token'];
+                    $post = new Application_Model_Facebook_Post();
+                    $photo_post = $post->createPost($page_id, $type, $data);
+
+                    if($photo_post){
+                        echo $photo_post['id'];
+                        exit();
+                    }
+                    else{
+                        echo 'fail';
+                        exit();
+                    }
+                }
+                else{
+                    echo "empty access token";
                 }
             }
             else{
-                echo 'fail';
-                //$this->_redirect('')
+                echo "invalid image";
             }
         } catch (FacebookApiException $e) {
             echo $e;
@@ -148,7 +172,7 @@ class FacebookController extends Zend_Controller_Action
     
     public function videoAction(){
         /**Note
-          *30/7 Raw function
+          *why invalid format???
           */  
         try {
             $page = $this->_request->getParam('page_id');
@@ -187,7 +211,7 @@ class FacebookController extends Zend_Controller_Action
     
     public function eventAction(){
         /**Note
-          *Raw
+          *unix time???
           */
         try {
             $page = $this->_request->getParam('post_user_id');
@@ -214,21 +238,36 @@ class FacebookController extends Zend_Controller_Action
     
     public function milestoneAction(){
         /**Note
-          *Raw
+          *Test ok but can't post with images???
           */
         try {
-            $page = $this->_request->getParam('post_user_id');
+            $page_id = $this->_request->getParam('page_id_mile');
+            $title = $this->_request->getParam('title_mile');
+            $des = $this->_request->getParam('description_mile');
+            $time = $this->_request->getParam('time_mile');
             $type = "milestones";            
             $data = array(
-                'title' => 'string',//string //The title of the milestone
-                'description' => '',//string //The description of the milestone
-                'start_time' => '',//date/time format ISO-8601 //The start time of the milestone. A Page's milestones have the same start and end time.        
+                'title' => $title,//string //The title of the milestone
+                'description' => $des,//string //The description of the milestone
+                'start_time' => $time,//date/time format ISO-8601 //The start time of the milestone. A Page's milestones have the same start and end time.        
             );
-	
-            $milestone_post = $this->_postPage($page, $type, $data);
-            if($milestone_post){
-                echo $milestone_post['id'];
-                exit();
+            $page_info = Fb_Facebook::api($page_id."?fields=access_token");
+            if( !empty($page_info['access_token']) ) {
+        	$data['access_token'] = $page_info['access_token'];
+                $post = new Application_Model_Facebook_Post();
+                $milestone_post = $post->createPost($page_id, $type, $data);
+            
+                if($milestone_post){
+                    echo $milestone_post['id'];
+                    exit();
+                }
+                else{
+                    echo 'fail';
+                    exit();
+                }
+            }
+            else{
+                echo "empty access token";
             }
         } catch (FacebookApiException $e) {
             echo $e;
@@ -238,23 +277,37 @@ class FacebookController extends Zend_Controller_Action
     
     public function questionAction(){
         /**Note
-          *...
+          *Test ok
           */  
         try {
-            $page = $this->_request->getParam('post_user_id');
-            $type = "feed";            
+            $page_id = $this->_request->getParam('page_id_poll');
+            $question = $this->_request->getParam('question');
+            $op1 = $this->_request->getParam('op1');
+            $op2 = $this->_request->getParam('op2');
+            $type = "questions";            
             $data = array(
-                'question' => '',//string //The text of the question 
-                'options' => array(),//array //Array of answer options 
+                'question' => $question,//string //The text of the question 
+                'options' => array($op1, $op2),//array //Array of answer options 
 //                'allow_new_options' => true,//boolean //Allows other users to add new options (True by default) 
 //                'published' => true,//boolean //Whether a post is published. Default is published. This field is `not` supported when actions parameter is specified. 
 //                'scheduled_publish_time' => '',//UNIX timestamp //Time when the page post should go live, this should be between 10 mins and 6 months from the time of publishing the post.
             );
-	
-            $question_post = $this->_postPage($page, $type, $data);
-            if($question_post){
-                echo $question_post['id'];
-                exit();
+	    $page_info = Fb_Facebook::api($page_id."?fields=access_token");
+            if( !empty($page_info['access_token']) ) {
+        	$data['access_token'] = $page_info['access_token'];
+                $post = new Application_Model_Facebook_Post();
+                $question_post = $post->createPost($page_id, $type, $data);
+                if($question_post){
+                    echo $question_post['id'];
+                    exit();
+                }
+                else{
+                    echo 'fail';
+                    exit();
+                }
+            }
+            else{
+                echo "empty access token";
             }
         } catch (FacebookApiException $e) {
             echo $e;

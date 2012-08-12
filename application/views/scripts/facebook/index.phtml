@@ -47,6 +47,36 @@ echo $this->data;?>
 		<input class="post_but" type="submit" value="Upload video" />
 	</form>
 </div>
+<div style="clear:both;"></div>
+<div style="padding:5px;margin:5px;float:left; border: 1px solid black; width: 350px;">
+	<p>Post milestone</p>
+	<form method="post" action="http://localhost/Social_Xpert/index.php/facebook/milestone">
+		Page ID<input type="text" value="421753514532658" name="page_id_mile" />
+        <br/>
+		Title<input type="text" value="tit" name="title_mile" />
+        <br/>
+                Description<input type="text" value="des" name="description_mile" />
+        <br/>
+		Start Time<input type="text" value="2012-08-12" name="time_mile" />
+        <br/>
+		<input class="post_but" type="submit" value="Post milestone" />
+	</form>
+</div>
+<div style="clear:both;"></div>
+<div style="padding:5px;margin:5px;float:left; border: 1px solid black; width: 350px;">
+	<p>Post question</p>
+	<form method="post" action="http://localhost/Social_Xpert/index.php/facebook/question">
+		Page ID<input type="text" value="421753514532658" name="page_id_poll" />
+        <br/>
+		Question<input type="text" value="question" name="question" />
+        <br/>
+                Option 1<input type="text" value="option 1" name="op1" />
+        <br/>
+		Option 2<input type="text" value="option 2" name="op2" />
+        <br/>
+		<input class="post_but" type="submit" value="Post question" />
+	</form>
+</div>
 
 </body>
 

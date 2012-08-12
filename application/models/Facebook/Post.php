@@ -40,6 +40,22 @@ class Application_Model_Facebook_Post
         }
     }
 
+    public function deletePost($post_id, $data=null){
+        /**Note
+         * Must be manage_pages and have access_token
+         * $data is array from facebook develop graph api
+         * $data = array(
+         *      'access_token'  => string,  if you have
+         * )  
+         * result return true or false
+         **/
+        try {
+            return $result = Fb_Facebook::api($post_id, "DELETE", $data);
+        } catch(FacebookApiException $e) {
+            throw new Exception($e);
+        }
+    }
+    
     public function getPost($post_id, $data=null){
         /**Note
           *Must be admin and have access_token
@@ -60,6 +76,19 @@ class Application_Model_Facebook_Post
           */
         try {
             $posts = Fb_Facebook::api($page_id."/posts", "GET", $data);
+            return $posts;    
+        } catch(FacebookApiException $e) {
+            throw new Exception($e);
+        }
+    }
+    
+    public function getCheckins($page_id, $data=null){
+        /**Note
+          *Must be admin and have access_token
+          *$data is array from facebook develop graph api
+          */
+        try {
+            $posts = Fb_Facebook::api($page_id."/checkins", "GET", $data);
             return $posts;    
         } catch(FacebookApiException $e) {
             throw new Exception($e);

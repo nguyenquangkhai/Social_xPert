@@ -52,7 +52,7 @@ class Application_Model_Facebook_Page
          * )  
          **/
         try {
-            return $post = Fb_Facebook::api($page_id, "POST", $data);
+            return $page = Fb_Facebook::api($page_id, "POST", $data);
         } catch(FacebookApiException $e) {
             throw new Exception($e);
         }
@@ -70,7 +70,7 @@ class Application_Model_Facebook_Page
          * )  
          **/
         try {
-            return $post = Fb_Facebook::api($page_id, "POST", $data);
+            return $page = Fb_Facebook::api($page_id, "POST", $data);
         } catch(FacebookApiException $e) {
             throw new Exception($e);
         }
@@ -87,7 +87,7 @@ class Application_Model_Facebook_Page
          * )  
          **/
         try {
-            return $post = Fb_Facebook::api($page_id, "POST", $data);
+            return $page = Fb_Facebook::api($page_id, "POST", $data);
         } catch(FacebookApiException $e) {
             throw new Exception($e);
         }

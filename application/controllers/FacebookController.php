@@ -14,10 +14,10 @@ class FacebookController extends Zend_Controller_Action
         /**Note
           *...
           */
-        $obj = new Application_Model_Facebook_Page();
+        $obj = new Application_Model_Facebook_Post();
      //   $post_id = "449021921787077_450553698300566";
-     //   $posts = $obj->getCheckins("421753514532658");
-        $posts = $obj->getAccessToken("421753514532658");
+        $posts = $obj->getPosts("421753514532658");
+     //   $posts = $obj->getAccessToken("421753514532658");
         $this->view->data = $posts;
         
     }
@@ -27,7 +27,7 @@ class FacebookController extends Zend_Controller_Action
           *...
           */
         $loginUrl = Fb_Facebook::getLoginUrl(array(
-            'scope' => 'publish_stream,publish_actions,manage_pages',
+            'scope' => 'publish_stream,publish_actions,manage_pages,create_event',
             'redirect_uri' => 'http://localhost/Social_Xpert/index.php/'.$this->_controller
         )); 
         $this->_redirect($loginUrl);
@@ -211,24 +211,43 @@ class FacebookController extends Zend_Controller_Action
     
     public function eventAction(){
         /**Note
-          *unix time???
+          *require scope create_event
           */
         try {
-            $page = $this->_request->getParam('post_user_id');
+            $page_id = $this->_request->getParam('page_id_event');
+            $name = $this->_request->getParam('name_event');
+            $des = $this->_request->getParam('description_event');
+            $stime = $this->_request->getParam('stime_event');
+            $etime = $this->_request->getParam('etime_event');
+            $location = $this->_request->getParam('location_event');
             $type = "events";            
             $data = array(
-                'name' => 'string',//string //Event name
-                'start_time' => '',//UNIX timestamp //Event start time
-                'end_time' => '',//UNIX timestamp //Event start time
-                'description' => '',//string //Event description
-                'location' => '',//string //Event location
-                'privacy_type' => '',//string contain 'OPEN' (default), 'CLOSED', or 'SECRET' //Event privacy setting
+                'name' => $name,//string //Event name
+                'start_time' => $stime,//in ISO-8601  //Event start time
+                'end_time' => $etime,//in ISO-8601 //Event start time
+                'description' => $des,//string //Event description
+                'location' => $location,//string //Event location
+          //      'location_id' => '',//string //Facebook Place ID of the place the Event is taking place
+           //     'privacy_type' => '',//string contain 'OPEN' (default), 'CLOSED', or 'SECRET' //Event privacy setting
             );
 	
-            $event_post = $this->_postPage($page, $type, $data);
-            if($event_post){
-                echo $event_post['id'];
-                exit();
+            $page_info = Fb_Facebook::api($page_id."?fields=access_token");
+            if( !empty($page_info['access_token']) ) {
+        	$data['access_token'] = $page_info['access_token'];
+                $post = new Application_Model_Facebook_Post();
+                $event_post = $post->createPost($page_id, $type, $data);
+            
+                if($event_post){
+                    echo $event_post['id'];
+                    exit();
+                }
+                else{
+                    echo 'fail';
+                    exit();
+                }
+            }
+            else{
+                echo "empty access token";
             }
         } catch (FacebookApiException $e) {
             echo $e;

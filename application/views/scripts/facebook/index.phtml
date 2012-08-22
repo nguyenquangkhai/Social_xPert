@@ -77,7 +77,24 @@ echo $this->data;?>
 		<input class="post_but" type="submit" value="Post question" />
 	</form>
 </div>
-
+<div style="padding:5px;margin:5px;float:left; border: 1px solid black; width: 350px;">
+	<p>Post event</p>
+	<form method="post" action="http://localhost/Social_Xpert/index.php/facebook/event">
+		Page ID<input type="text" value="421753514532658" name="page_id_event" />
+        <br/>
+		Name<input type="text" value="question" name="name_event" />
+        <br/>
+                Start Time<input type="text" value="2012-08-12" name="stime_event" />
+        <br/>
+		End Time<input type="text" value="2012-08-23" name="etime_event" />
+        <br/>
+                Description<input type="text" value="des_event" name="description_event" />    
+        <br/>
+                Location<input type="text" value="TP HCM" name="location_event" />
+        <br/>
+		<input class="post_but" type="submit" value="Post event" />
+	</form>
+</div>
 </body>
 
 </html>
